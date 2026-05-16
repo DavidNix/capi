@@ -1,0 +1,72 @@
+version: "2"
+run:
+  modules-download-mode: readonly
+linters:
+  default: none
+  enable:
+    - asasalint
+    - bodyclose
+    - depguard
+    - errcheck
+    - errname
+    - errorlint
+    - forbidigo
+    - gocritic
+    - goprintffuncname
+    - govet
+    - ineffassign
+    - intrange
+    - nakedret
+    - nolintlint
+    - paralleltest
+    - reassign
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - testifylint
+    - unconvert
+    - unused
+    - usetesting
+  settings:
+    depguard:
+      rules:
+        tests:
+          deny:
+            - pkg: github.com/stretchr/testify/assert
+              desc: Use github.com/stretchr/testify/require instead of testify/assert
+    govet:
+      disable:
+        - fieldalignment
+      enable-all: true
+    nolintlint:
+      require-explanation: false
+      require-specific: false
+      allow-unused: false
+    paralleltest:
+      ignore-missing: false
+      ignore-missing-subtests: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - .*_templ.go
+      - poc
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - .*_templ.go
+      - poc
+      - third_party$
+      - builtin$
+      - examples$
