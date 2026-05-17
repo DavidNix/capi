@@ -63,7 +63,27 @@ The SDK needs a Google Ads customer ID, a conversion action ID, a developer toke
 
 5. Find `GOOGLE_ADS_DEVELOPER_TOKEN`.
 
-   In the Google Ads manager account, open Admin, then API Center. Copy the Developer token. OAuth credentials alone are not enough for Google Ads API uploads. The developer token must be allowed to access the account type you upload into; a token limited to test accounts cannot upload production conversions.
+    In the Google Ads manager account, open Admin, then API Center, or go directly to https://ads.google.com/aw/apicenter. Copy the Developer token. OAuth credentials alone are not enough for Google Ads API uploads. The developer token must be allowed to access the account type you upload into; a token limited to test accounts cannot upload production conversions.
+
+    Google Ads only exposes API Center and developer-token generation from Manager Accounts, historically called MCC accounts. Standard individual accounts cannot create a developer token, even when your user is the account owner or super admin.
+
+    If you do not already have a Manager Account, create one first:
+
+    1. Open https://ads.google.com/home/tools/manager-accounts/.
+    2. Click Create a manager account.
+    3. Give it a name, such as `My Company - Admin Manager`.
+    4. For account type, select Manage other people's accounts, even if you only manage your own account.
+    5. Submit and click Explore your account.
+
+    Link your existing production account to the new Manager Account:
+
+    1. Copy the 10-digit customer ID of your original production account.
+    2. In the Manager Account dashboard, open Accounts from the left-hand menu.
+    3. Click the blue `+` button and select Link existing account.
+    4. Paste the 10-digit customer ID and send the request.
+    5. Approve the request from your original account under Admin, then Access and Security, then Managers, or from the approval email.
+
+    After the accounts are linked, switch into the Manager Account, open Admin, then API Center, or go directly to https://ads.google.com/aw/apicenter. Fill out the developer profile details and copy the issued 22-character `GOOGLE_ADS_DEVELOPER_TOKEN`. Your server can use that token to upload conversions into the linked production account.
 
 6. Create a Google Cloud OAuth client.
 
