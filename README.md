@@ -14,6 +14,11 @@ This project is in early development. Google Ads is the only supported integrati
 
 ## Google Ads
 
+> [!WARNING]
+> New Google Ads developer tokens are granted test-account access only by default. After you create a Manager Account and get the developer token, request Basic Access in API Center. Google Ads performs a manual review before Basic Access is approved; expect this review to take about 3 days.
+>
+> If you do not specifically need server-side conversion uploads, Google's client-side website conversion tracking may be easier to set up. See Google's official setup docs: https://support.google.com/google-ads/answer/16560108.
+
 Official Google Ads REST API documentation: https://developers.google.com/google-ads/api/rest/overview
 
 Create a client with explicit configuration. The SDK does not read environment variables or require a specific session implementation.
