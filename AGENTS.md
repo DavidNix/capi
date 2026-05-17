@@ -70,11 +70,11 @@ make vet      # Lint all
 - Ignore return values when testing error cases: `_, err := FunctionToTest()`
 - Do not test `New` constructor/initializer functions
 - Do not add tests under `cmd/`. Main commands and subcommands are wiring only; test underlying behavior in `backend/` packages instead.
+- Tests are not required for CLI command packages such as `cmd/` or `internal/capicmd/`; test reusable library/backend behavior instead.
 
 ### Test Helper Pattern
 
 When exporting test helpers from a package, define a `TestingT` interface within that package rather than relying on a shared `testutil` package or importing `testing.T` directly. This keeps the interface minimal and co-located with the code that uses it.
 
 **Example**: `backend/analytics/test_util.go` defines a local `TestingT` interface with only the methods needed (`Helper()`, `Errorf()`, `Fatalf()`). This avoids circular dependencies and keeps the package self-contained.
-
 
